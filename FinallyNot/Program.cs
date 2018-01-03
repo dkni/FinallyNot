@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading;
 
 namespace FinallyNot
 {
@@ -6,7 +7,14 @@ namespace FinallyNot
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            try
+            {
+                new Thread(() => throw new ArithmeticException()).Start();
+            }
+            finally
+            {
+                Console.WriteLine("Finally!");
+            }
         }
     }
 }
